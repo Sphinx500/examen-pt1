@@ -7,9 +7,11 @@ import java.util.List;
 @Entity
 @Table(name = "language")
 public class Language {
+    @ManyToMany(mappedBy = "likedLanguages", cascade = CascadeType.PERSIST)
+    private List<Employee> likes;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long languaje_id;
 
     @Column(name="code")
     private long code;
@@ -22,11 +24,11 @@ public class Language {
 
 
     public long getId() {
-        return id;
+        return languaje_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long languaje_id) {
+        this.languaje_id = languaje_id;
     }
 
     public long getCode() {

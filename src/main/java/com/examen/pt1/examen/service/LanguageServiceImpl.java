@@ -19,12 +19,12 @@ public class LanguageServiceImpl implements LanguageService{
     }
 
     @Override
-    public Language getLanguageById(long id) {
-        Optional<Language> lang = this.languageRepository.findById(id);
+    public Language getLanguageById(long languaje_id) {
+        Optional<Language> lang = this.languageRepository.findById(languaje_id);
         if (lang.isPresent()){
             return lang.get();
         } else{
-            throw new ResourceNotFoundException("Record not found whit id: "+ id);
+            throw new ResourceNotFoundException("Record not found whit id: "+ languaje_id);
         }
     }
 
@@ -45,13 +45,13 @@ public class LanguageServiceImpl implements LanguageService{
     }
 
     @Override
-    public void deleteLanguage(long id) {
-        Optional<Language> lang = this.languageRepository.findById(id);
+    public void deleteLanguage(long languaje_id) {
+        Optional<Language> lang = this.languageRepository.findById(languaje_id);
 
         if(lang.isPresent()){
             this.languageRepository.delete(lang.get());
         }else{
-            throw new ResourceNotFoundException("Record not found whit id: "+ id);
+            throw new ResourceNotFoundException("Record not found whit id: "+ languaje_id);
         }
     }
 }

@@ -7,9 +7,19 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 public class Employee {
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "languages_like",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id"))
+    private List<Language> likedLanguages;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "country_id")
+    private Country country;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long employee_id;
 
     @Column(name="surname")
     private String surname;
@@ -27,11 +37,11 @@ public class Employee {
     private List air;
 
     public long getId() {
-        return id;
+        return employee_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long employee_id) {
+        this.employee_id = employee_id;
     }
 
     public String getSurname() {

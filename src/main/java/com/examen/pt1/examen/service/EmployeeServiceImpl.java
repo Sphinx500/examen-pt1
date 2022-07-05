@@ -24,12 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployeeById(long id) {
-        Optional<Employee> employee = this.employeeRepository.findById(id);
+    public Employee getEmployeeById(long employee_id) {
+        Optional<Employee> employee = this.employeeRepository.findById(employee_id);
         if (employee.isPresent()){
             return employee.get();
         } else{
-            throw new ResourceNotFoundException("Record not found whit id: "+ id);
+            throw new ResourceNotFoundException("Record not found whit id: "+ employee_id);
         }
     }
 
@@ -51,13 +51,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(long id) {
-        Optional<Employee> employee = this.employeeRepository.findById(id);
+    public void deleteEmployee(long employee_id) {
+        Optional<Employee> employee = this.employeeRepository.findById(employee_id);
 
         if(employee.isPresent()){
             this.employeeRepository.delete(employee.get());
         }else{
-            throw new ResourceNotFoundException("Record not found whit id: "+ id);
+            throw new ResourceNotFoundException("Record not found whit id: "+ employee_id);
         }
     }
+
+    @Override
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
 }

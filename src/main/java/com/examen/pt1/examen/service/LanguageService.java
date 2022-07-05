@@ -8,9 +8,9 @@ public interface LanguageService {
 
     List<Language> getAllLanguage();
 
-    Language getLanguageById(long id);
+    Language getLanguageById(long languaje_id);
 
     Language updateLanguage(Language language);
 
-    void deleteLanguage(long id);
+    void deleteLanguage(long languaje_id);
 }

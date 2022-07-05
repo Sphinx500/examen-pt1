@@ -7,9 +7,15 @@ import java.util.List;
 @Entity
 @Table(name = "country")
 public class Country {
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "airport_id")
+    private List<Airports> airports;
+
+    @OneToOne(mappedBy = "country", cascade = CascadeType.ALL)
+    private Employee employee;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long country_id;
 
     @Column(name="code")
     private long code;
@@ -21,11 +27,11 @@ public class Country {
     private List emp;
 
     public long getId() {
-        return id;
+        return country_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long country_id) {
+        this.country_id = country_id;
     }
 
     public long getCode() {

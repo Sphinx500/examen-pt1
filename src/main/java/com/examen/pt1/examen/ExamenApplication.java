@@ -3,7 +3,9 @@ package com.examen.pt1.examen;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
+
 public class ExamenApplication {
 
 	public static void main(String[] args) {

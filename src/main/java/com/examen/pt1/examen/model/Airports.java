@@ -6,10 +6,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "airports")
+
 public class Airports {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "country_id")
+    private Country country;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long airport_id;
 
     @Column(name="name")
     private String name;
@@ -17,12 +21,16 @@ public class Airports {
     @OneToMany(targetEntity=Employee.class)
     private List empl;
 
-    public long getId() {
-        return id;
+    public Airports(Country country) {
+        this.country = country;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getId() {
+        return airport_id;
+    }
+
+    public void setId(long airport_id) {
+        this.airport_id = airport_id;
     }
 
     public String getName() {
