@@ -41,4 +41,9 @@ public class EmployeeController {
         this.employeeService.deleteEmployee(id);
         return  HttpStatus.OK;
     }
+
+    @PostMapping("apiv1/clientes/add")
+    public  ResponseEntity<Employee> addEmploye(@RequestBody Employee employee){
+        return ResponseEntity.ok().body(this.employeeService.addEmployee(employee));
+    }
 }
